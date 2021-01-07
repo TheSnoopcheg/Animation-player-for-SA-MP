@@ -1,6 +1,6 @@
 script_name("Animations")
 script_author("Snoopcheg")
-script_version("0.8")
+script_version("0.7")
 
 --require 'deps' {'fyp:mimgui'}
 local key = require ('vkeys')
