@@ -306,7 +306,7 @@ local mainFrame = imgui.OnFrame(
 		if imgui.Button(u8'–û—Ç–¥—ã—à–∫–∞', btn_size) then playAnim("IDLE_tired", "FAT", 4.0, true, false, false, false) end
 		if imgui.Button(u8'–ß–∏–Ω–∏—Ç—å –º–∞—à–∏–Ω—É', btn_size) then playAnim("Fixn_Car_Loop", "CAR", 4.0, true, false, false, false) end	
 		if imgui.Button(u8'–î–∞—Ç—å –æ—Ç–º–∞—à–∫—É', btn_size) then playAnim("flag_drop", "CAR", 4.0, false, false, false, false) end	
-		if imgui.Button(u8'–ó–∞–ª–æ–∂–∏—Ç—å –±–æ–º–±—É', btn_size) then playAnim("BOM_Plant", "BOMBER", 4.0, false, false, false, false) end	
+		if imgui.Button(u8'–ó–∞–ª–æ–∂–∏—Ç—å –±–æ–º–±—É', btn_size) then playAnim("BOM_Plant", "BOMBER", 4.0, false, false, false, false) end		
 		imgui.End()
 	end
 	
@@ -318,7 +318,7 @@ local mainFrame = imgui.OnFrame(
 		imgui.Text('Animations for GTA:SA\nThe script works on all current game\nprojects.')
 		imgui.Text('"<-" - Indicates the animation to be\nin before using the next one.')
 		imgui.Text('W - for woman\nM - for man')
-		imgui.Text(u8'¬© Snoopcheg')
+		imgui.Text(u8'–í¬© Snoopcheg')
 		imgui.SliderInt('X position', xslider, 155, gw - 400)
 		imgui.SliderInt('Y position', yslider, 120, gh - 120)
 		imgui.Checkbox('Use only command to activate', actkey)
@@ -385,21 +385,21 @@ function autoupdate(json_url, prefix, url)
               lua_thread.create(function(prefix)
                 local dlstatus = require('moonloader').download_status
                 local color = -1
-                sampAddChatMessage((prefix..'Œ·Ì‡ÛÊÂÌÓ Ó·ÌÓ‚ÎÂÌËÂ. œ˚Ú‡˛Ò¸ Ó·ÌÓ‚ËÚ¸Òˇ c '..thisScript().version..' Ì‡ '..updateversion), color)
+                sampAddChatMessage((prefix..'–û–±–Ω–∞—Ä—É–∂–µ–Ω–æ –æ–±–Ω–æ–≤–ª–µ–Ω–∏–µ. –ü—ã—Ç–∞—é—Å—å –æ–±–Ω–æ–≤–∏—Ç—å—Å—è c '..thisScript().version..' –Ω–∞ '..updateversion), color)
                 wait(250)
                 downloadUrlToFile(updatelink, thisScript().path,
                   function(id3, status1, p13, p23)
                     if status1 == dlstatus.STATUS_DOWNLOADINGDATA then
-                      print(string.format('«‡„ÛÊÂÌÓ %d ËÁ %d.', p13, p23))
+                      print(string.format('–ó–∞–≥—Ä—É–∂–µ–Ω–æ %d –∏–∑ %d.', p13, p23))
                     elseif status1 == dlstatus.STATUS_ENDDOWNLOADDATA then
-                      print('«‡„ÛÁÍ‡ Ó·ÌÓ‚ÎÂÌËˇ Á‡‚Â¯ÂÌ‡.')
-                      sampAddChatMessage((prefix..'Œ·ÌÓ‚ÎÂÌËÂ Á‡‚Â¯ÂÌÓ!'), color)
+                      print('–ó–∞–≥—Ä—É–∑–∫–∞ –æ–±–Ω–æ–≤–ª–µ–Ω–∏—è –∑–∞–≤–µ—Ä—à–µ–Ω–∞.')
+                      sampAddChatMessage((prefix..'–û–±–Ω–æ–≤–ª–µ–Ω–∏–µ –∑–∞–≤–µ—Ä—à–µ–Ω–æ!'), color)
                       goupdatestatus = true
                       lua_thread.create(function() wait(500) thisScript():reload() end)
                     end
                     if status1 == dlstatus.STATUSEX_ENDDOWNLOAD then
                       if goupdatestatus == nil then
-                        sampAddChatMessage((prefix..'Œ·ÌÓ‚ÎÂÌËÂ ÔÓ¯ÎÓ ÌÂÛ‰‡˜ÌÓ. «‡ÔÛÒÍ‡˛ ÛÒÚ‡Â‚¯Û˛ ‚ÂÒË˛..'), color)
+                        sampAddChatMessage((prefix..'–û–±–Ω–æ–≤–ª–µ–Ω–∏–µ –ø—Ä–æ—à–ª–æ –Ω–µ—É–¥–∞—á–Ω–æ. –ó–∞–ø—É—Å–∫–∞—é —É—Å—Ç–∞—Ä–µ–≤—à—É—é –≤–µ—Ä—Å–∏—é..'), color)
                         update = false
                       end
                     end
@@ -409,11 +409,11 @@ function autoupdate(json_url, prefix, url)
               )
             else
               update = false
-              print('v'..thisScript().version..': Œ·ÌÓ‚ÎÂÌËÂ ÌÂ ÚÂ·ÛÂÚÒˇ.')
+              print('v'..thisScript().version..': –û–±–Ω–æ–≤–ª–µ–Ω–∏–µ –Ω–µ —Ç—Ä–µ–±—É–µ—Ç—Å—è.')
             end
           end
         else
-          print('v'..thisScript().version..': ÕÂ ÏÓ„Û ÔÓ‚ÂËÚ¸ Ó·ÌÓ‚ÎÂÌËÂ. —ÏËËÚÂÒ¸ ËÎË ÔÓ‚Â¸ÚÂ Ò‡ÏÓÒÚÓˇÚÂÎ¸ÌÓ Ì‡ '..url)
+          print('v'..thisScript().version..': –ù–µ –º–æ–≥—É –ø—Ä–æ–≤–µ—Ä–∏—Ç—å –æ–±–Ω–æ–≤–ª–µ–Ω–∏–µ. –°–º–∏—Ä–∏—Ç–µ—Å—å –∏–ª–∏ –ø—Ä–æ–≤–µ—Ä—å—Ç–µ —Å–∞–º–æ—Å—Ç–æ—è—Ç–µ–ª—å–Ω–æ –Ω–∞ '..url)
           update = false
         end
       end
