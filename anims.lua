@@ -150,7 +150,7 @@ local mainFrame = imgui.OnFrame(
 		if imgui.Button('10 anim', btn_size) then playAnim("DAN_LOOP_A", "DANCING", 4.0, true, false, false, false) end
 		if imgui.Button('Waves', btn_size) then playAnim("DNCE_M_A", "DANCING", 4.0, true, false, false, false) end
 		if imgui.Button('Wiggle', btn_size) then playAnim("DNCE_M_B", "DANCING", 4.0, true, false, false, false) end
-		if imgui.Button(u8'Ñòðèïòèç(1)', btn_size) then playAnim("strip_B", "STRIP", 4.0, true, false, false, false) end
+		if imgui.Button(u8'Стриптиз(1)', btn_size) then playAnim("strip_B", "STRIP", 4.0, true, false, false, false) end
 		if imgui.Button(u8'Ñòðèïòèç(2)', btn_size) then playAnim("strip_E", "STRIP", 4.0, true, false, false, false) end
 		if imgui.Button(u8'Ñòðèïòèç(3)', btn_size) then playAnim("strip_G", "STRIP", 4.0, true, false, false, false) end
 		if imgui.Button(u8'Ñòðèïòèç(4)', btn_size) then playAnim("STR_A2B", "STRIP", 4.0, true, false, false, false) end
