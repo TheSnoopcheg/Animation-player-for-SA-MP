@@ -1,4 +1,5 @@
 {
-  "updateurl": "https://github.com/TheSnoopcheg/anims/releases/download/0.7.1-beta/anims.lua",
-  "latest": "0.7.1"
+  "updateurl": "https://github.com/TheSnoopcheg/anims/releases/download/0.7.3-beta/anims.lua",
+  "latest": "0.7.3"
+  "changelog": "https://github.com/TheSnoopcheg/anims/blob/main/CHANGELOG.md"
 }
