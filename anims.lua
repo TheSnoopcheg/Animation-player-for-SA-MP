@@ -55,7 +55,7 @@ function playAnim(name, nameLib, speed, loop, lockX, lockY, lockF)
     animStatus = true
     taskPlayAnim(PLAYER_PED, name, nameLib, speed, loop, lockX, lockY, lockF, -1)
   else
-     sampAddChatMessage('Выйдите из транспортного средства для того, чтобы использовать анимации.', -1)
+     sampAddChatMessage('Р’С‹Р№РґРёС‚Рµ РёР· С‚СЂР°РЅСЃРїРѕСЂС‚РЅРѕРіРѕ СЃСЂРµРґСЃС‚РІР° РґР»СЏ С‚РѕРіРѕ, С‡С‚РѕР±С‹ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ Р°РЅРёРјР°С†РёРё.', -1)
   end
 end
 
@@ -88,20 +88,20 @@ local mainFrame = imgui.OnFrame(
 		imgui.Begin('Anim menu', renderMainWindow, imgui.WindowFlags.NoResize + imgui.WindowFlags.NoMove)
 		local btn_size = imgui.ImVec2(-0.1, 0)
 		if act == 0 then
-		if imgui.Button(u8'Танцы', btn_size) then act = 1 end
-		if imgui.Button(u8'Социальное', btn_size) then act = 2 end
-		if imgui.Button(u8'Сесть/Лечь', btn_size) then act = 3 end		
-		if imgui.Button(u8'Офис', btn_size) then act = 4 end
-		if imgui.Button(u8'Секс', btn_size) then act = 5 end
-		if imgui.Button(u8'Другие', btn_size) then act = 6 end
-		if imgui.Button(u8'Остановить анимацию', btn_size) and animStatus and not isCharInAnyCar(PLAYER_PED) and not sampIsChatInputActive() then
+		if imgui.Button(u8'РўР°РЅС†С‹', btn_size) then act = 1 end
+		if imgui.Button(u8'РЎРѕС†РёР°Р»СЊРЅРѕРµ', btn_size) then act = 2 end
+		if imgui.Button(u8'РЎРµСЃС‚СЊ/Р›РµС‡СЊ', btn_size) then act = 3 end		
+		if imgui.Button(u8'РћС„РёСЃ', btn_size) then act = 4 end
+		if imgui.Button(u8'РЎРµРєСЃ', btn_size) then act = 5 end
+		if imgui.Button(u8'Р”СЂСѓРіРёРµ', btn_size) then act = 6 end
+		if imgui.Button(u8'РћСЃС‚Р°РЅРѕРІРёС‚СЊ Р°РЅРёРјР°С†РёСЋ', btn_size) and animStatus and not isCharInAnyCar(PLAYER_PED) and not sampIsChatInputActive() then
 			taskPlayAnim(PLAYER_PED, "abseil", "PED", 4.0, false, false, true, false, -1)
 			animStatus = false
 		end
-		if imgui.Button(u8'Информация&Настройки', btn_size) then act = 7 end
+		if imgui.Button(u8'РРЅС„РѕСЂРјР°С†РёСЏ&РќР°СЃС‚СЂРѕР№РєРё', btn_size) then act = 7 end
 		elseif act == 1 then
-		if imgui.Button(u8'<< Назад', btn_size) then act = 0 end
-		imgui.Text(u8'Из Fortnite:')
+		if imgui.Button(u8'<< РќР°Р·Р°Рґ', btn_size) then act = 0 end
+		imgui.Text(u8'РР· Fortnite:')
 		if imgui.Button('Orange Justice', btn_size) then playAnim("DNCE_M_A", "DANCING", 4.0, true, false, false, false) end
 		if imgui.Button('True heart', btn_size) then playAnim("DNCE_M_B", "DANCING", 4.0, true, false, false, false) end
 		if imgui.Button('Electro Shuffle', btn_size) then playAnim("DNCE_M_D", "DANCING", 4.0, true, false, false, false) end
@@ -109,151 +109,151 @@ local mainFrame = imgui.OnFrame(
 		if imgui.Button('Dance Moves', btn_size) then playAnim("BD_PANIC_LOOP", "BD_FIRE", 4.0, true, false, false, false) end
 		if imgui.Button('Fresh', btn_size) then playAnim("WASH_UP", "BD_FIRE", 4.0, true, false, false, false) end
 		if imgui.Button('Eagle', btn_size) then playAnim("DNCE_M_C", "DANCING", 4.0, true, false, false, false) end
-		imgui.Text(u8'Другие:')
-		if imgui.Button(u8'Танец(1)', btn_size) then playAnim("DAN_DOWN_A", "DANCING", 4.0, true, false, false, false) end
-		if imgui.Button(u8'Танец(2)', btn_size) then playAnim("DAN_LOOP_A", "DANCING", 4.0, true, false, false, false) end
-		if imgui.Button(u8'Танец(3)', btn_size) then playAnim("DAN_Left_A", "DANCING", 4.0, true, false, false, false) end
-		if imgui.Button(u8'Стриптиз(1)', btn_size) then playAnim("strip_B", "STRIP", 4.0, true, false, false, false) end
-		if imgui.Button(u8'Стриптиз(2)', btn_size) then playAnim("strip_E", "STRIP", 4.0, true, false, false, false) end
-		if imgui.Button(u8'Стриптиз(3)', btn_size) then playAnim("strip_G", "STRIP", 4.0, true, false, false, false) end
-		if imgui.Button(u8'Стриптиз(4)', btn_size) then playAnim("STR_A2B", "STRIP", 4.0, true, false, false, false) end
-		if imgui.Button(u8'Стриптиз(5)', btn_size) then playAnim("STR_B2C", "STRIP", 4.0, true, false, false, false) end
-		if imgui.Button(u8'Стриптиз(6)', btn_size) then playAnim("STR_C1", "STRIP", 4.0, true, false, false, false) end
-		if imgui.Button(u8'Стриптиз(7)', btn_size) then playAnim("STR_C2", "STRIP", 4.0, true, false, false, false) end
-		if imgui.Button(u8'Стриптиз(8)', btn_size) then playAnim("STR_Loop_A", "STRIP", 4.0, true, false, false, false) end
-		if imgui.Button(u8'Стриптиз(9)', btn_size) then playAnim("STR_Loop_B", "STRIP", 4.0, true, false, false, false) end
-		if imgui.Button(u8'Стриптиз(10)', btn_size) then playAnim("STR_Loop_C", "STRIP", 4.0, true, false, false, false) end
+		imgui.Text(u8'Р”СЂСѓРіРёРµ:')
+		if imgui.Button(u8'РўР°РЅРµС†(1)', btn_size) then playAnim("DAN_DOWN_A", "DANCING", 4.0, true, false, false, false) end
+		if imgui.Button(u8'РўР°РЅРµС†(2)', btn_size) then playAnim("DAN_LOOP_A", "DANCING", 4.0, true, false, false, false) end
+		if imgui.Button(u8'РўР°РЅРµС†(3)', btn_size) then playAnim("DAN_Left_A", "DANCING", 4.0, true, false, false, false) end
+		if imgui.Button(u8'РЎС‚СЂРёРїС‚РёР·(1)', btn_size) then playAnim("strip_B", "STRIP", 4.0, true, false, false, false) end
+		if imgui.Button(u8'РЎС‚СЂРёРїС‚РёР·(2)', btn_size) then playAnim("strip_E", "STRIP", 4.0, true, false, false, false) end
+		if imgui.Button(u8'РЎС‚СЂРёРїС‚РёР·(3)', btn_size) then playAnim("strip_G", "STRIP", 4.0, true, false, false, false) end
+		if imgui.Button(u8'РЎС‚СЂРёРїС‚РёР·(4)', btn_size) then playAnim("STR_A2B", "STRIP", 4.0, true, false, false, false) end
+		if imgui.Button(u8'РЎС‚СЂРёРїС‚РёР·(5)', btn_size) then playAnim("STR_B2C", "STRIP", 4.0, true, false, false, false) end
+		if imgui.Button(u8'РЎС‚СЂРёРїС‚РёР·(6)', btn_size) then playAnim("STR_C1", "STRIP", 4.0, true, false, false, false) end
+		if imgui.Button(u8'РЎС‚СЂРёРїС‚РёР·(7)', btn_size) then playAnim("STR_C2", "STRIP", 4.0, true, false, false, false) end
+		if imgui.Button(u8'РЎС‚СЂРёРїС‚РёР·(8)', btn_size) then playAnim("STR_Loop_A", "STRIP", 4.0, true, false, false, false) end
+		if imgui.Button(u8'РЎС‚СЂРёРїС‚РёР·(9)', btn_size) then playAnim("STR_Loop_B", "STRIP", 4.0, true, false, false, false) end
+		if imgui.Button(u8'РЎС‚СЂРёРїС‚РёР·(10)', btn_size) then playAnim("STR_Loop_C", "STRIP", 4.0, true, false, false, false) end
 		elseif act == 2 then
-		if imgui.Button(u8'<< Назад', btn_size) then act = 0 end
-		if imgui.Button(u8'Курить(1)', btn_size) then playAnim("F_smklean_loop", "SMOKING", 4.0, true, false, false, false) end
-		if imgui.Button(u8'Курить(2)', btn_size) then playAnim("M_smklean_loop", "SMOKING", 4.0, true, false, false, false) end
-		if imgui.Button(u8'Курить(3)', btn_size) then playAnim("M_smkstnd_loop", "SMOKING", 4.0, true, false, false, false) end
-		if imgui.Button(u8'Занюхнуть', btn_size) then playAnim("M_smk_in", "SMOKING", 4.0, false, false, false, false) end
-		if imgui.Button(u8'Наставить оружие', btn_size) then playAnim("ROB_Loop_Threat", "SHOP", 4.0, true, false, false, false) end
-		if imgui.Button(u8'Поднять руки', btn_size) then playAnim("SHP_HandsUp_Scr", "SHOP", 4.0, false, false, false, true) end
-		if imgui.Button(u8'Болеть(1)', btn_size) then playAnim("RIOT_CHANT", "RIOT", 4.0, true, false, false, false) end
-		if imgui.Button(u8'Болеть(2)', btn_size) then playAnim("RIOT_PUNCHES", "RIOT", 4.0, true, false, false, false) end
-		if imgui.Button(u8'Послать', btn_size) then playAnim("RIOT_FUKU", "RIOT", 4.0, false, false, false, false) end
-		if imgui.Button(u8'Кричать', btn_size) then playAnim("RIOT_shout", "RIOT", 4.0, false, false, false, false) end
-		if imgui.Button(u8'Прогнать', btn_size) then playAnim("CopTraf_Away", "POLICE", 4.0, false, false, false, false) end
-		if imgui.Button(u8'Ко мне', btn_size) then playAnim("CopTraf_Come", "POLICE", 4.0, false, false, false, false) end
-		if imgui.Button(u8'Стоп', btn_size) then playAnim("CopTraf_Stop", "POLICE", 4.0, false, false, false, false) end
-		if imgui.Button(u8'Ссать(M)', btn_size) then playAnim("Piss_in", "PAULNMAC", 4.0, false, false, false, true) end
-		if imgui.Button(u8'Йога', btn_size) then playAnim("Tai_Chi_Loop", "PARK", 4.0, true, false, false, false) end
-		if imgui.Button(u8'Массаж сердца', btn_size) then playAnim("CPR", "MEDIC", 4.0, false, false, false, false) end
-		if imgui.Button(u8'Сложить руки(1)', btn_size) then playAnim("wtchrace_in", "OTB", 4.0, false, false, false, true) end
-		if imgui.Button(u8'Сложить руки(2)', btn_size) then playAnim("prst_loopa", "GRAVEYARD", 4.0, false, false, false, true) end
-		if imgui.Button(u8'Проигрышь(1<-)', btn_size) then playAnim("wtchrace_lose", "OTB", 4.0, false, false, false, true) end
-		if imgui.Button(u8'Выигрышь(1<-)', btn_size) then playAnim("wtchrace_win", "OTB", 4.0, false, false, false, true) end
-		if imgui.Button(u8'Посмотреть на часы(1<-)', btn_size) then playAnim("Coplook_watch", "COP_AMBIENT", 4.0, false, false, false, true) end
-		if imgui.Button(u8'Задуматься(1<-)', btn_size) then playAnim("Coplook_think", "COP_AMBIENT", 4.0, false, false, false, true) end
-		if imgui.Button(u8'Почесать пах', btn_size) then playAnim("Scratchballs_01", "MISC", 4.0, false, false, false, false) end
-		if imgui.Button(u8'Передать деньги', btn_size) then playAnim("shop_pay", "INT_SHOP", 4.0, false, false, false, false) end
-		if imgui.Button(u8'Плакать(1)', btn_size) then playAnim("mrnF_loop", "GRAVEYARD", 4.0, true, false, false, false) end
-		if imgui.Button(u8'Плакать(2)', btn_size) then playAnim("mrnM_loop", "GRAVEYARD", 4.0, true, false, false, false) end
-		if imgui.Button(u8'Вытащить из под стола', btn_size) then playAnim("Barserve_bottle", "BAR", 4.0, false, false, false, false) end
-		if imgui.Button(u8'Махнуть рукой(1)', btn_size) then playAnim("Laugh_01", "RAPPING", 4.0, false, false, false, false) end
-		if imgui.Button(u8'Махнуть рукой(2)', btn_size) then playAnim("wave_loop", "ON_LOOKERS", 4.0, true, false, false, false) end
-		if imgui.Button(u8'Махнуть рукой(3)', btn_size) then playAnim("BD_GF_Wave", "BD_FIRE", 4.0, false, false, false, false) end	
+		if imgui.Button(u8'<< РќР°Р·Р°Рґ', btn_size) then act = 0 end
+		if imgui.Button(u8'РљСѓСЂРёС‚СЊ(1)', btn_size) then playAnim("F_smklean_loop", "SMOKING", 4.0, true, false, false, false) end
+		if imgui.Button(u8'РљСѓСЂРёС‚СЊ(2)', btn_size) then playAnim("M_smklean_loop", "SMOKING", 4.0, true, false, false, false) end
+		if imgui.Button(u8'РљСѓСЂРёС‚СЊ(3)', btn_size) then playAnim("M_smkstnd_loop", "SMOKING", 4.0, true, false, false, false) end
+		if imgui.Button(u8'Р—Р°РЅСЋС…РЅСѓС‚СЊ', btn_size) then playAnim("M_smk_in", "SMOKING", 4.0, false, false, false, false) end
+		if imgui.Button(u8'РќР°СЃС‚Р°РІРёС‚СЊ РѕСЂСѓР¶РёРµ', btn_size) then playAnim("ROB_Loop_Threat", "SHOP", 4.0, true, false, false, false) end
+		if imgui.Button(u8'РџРѕРґРЅСЏС‚СЊ СЂСѓРєРё', btn_size) then playAnim("SHP_HandsUp_Scr", "SHOP", 4.0, false, false, false, true) end
+		if imgui.Button(u8'Р‘РѕР»РµС‚СЊ(1)', btn_size) then playAnim("RIOT_CHANT", "RIOT", 4.0, true, false, false, false) end
+		if imgui.Button(u8'Р‘РѕР»РµС‚СЊ(2)', btn_size) then playAnim("RIOT_PUNCHES", "RIOT", 4.0, true, false, false, false) end
+		if imgui.Button(u8'РџРѕСЃР»Р°С‚СЊ', btn_size) then playAnim("RIOT_FUKU", "RIOT", 4.0, false, false, false, false) end
+		if imgui.Button(u8'РљСЂРёС‡Р°С‚СЊ', btn_size) then playAnim("RIOT_shout", "RIOT", 4.0, false, false, false, false) end
+		if imgui.Button(u8'РџСЂРѕРіРЅР°С‚СЊ', btn_size) then playAnim("CopTraf_Away", "POLICE", 4.0, false, false, false, false) end
+		if imgui.Button(u8'РљРѕ РјРЅРµ', btn_size) then playAnim("CopTraf_Come", "POLICE", 4.0, false, false, false, false) end
+		if imgui.Button(u8'РЎС‚РѕРї', btn_size) then playAnim("CopTraf_Stop", "POLICE", 4.0, false, false, false, false) end
+		if imgui.Button(u8'РЎСЃР°С‚СЊ(M)', btn_size) then playAnim("Piss_in", "PAULNMAC", 4.0, false, false, false, true) end
+		if imgui.Button(u8'Р™РѕРіР°', btn_size) then playAnim("Tai_Chi_Loop", "PARK", 4.0, true, false, false, false) end
+		if imgui.Button(u8'РњР°СЃСЃР°Р¶ СЃРµСЂРґС†Р°', btn_size) then playAnim("CPR", "MEDIC", 4.0, false, false, false, false) end
+		if imgui.Button(u8'РЎР»РѕР¶РёС‚СЊ СЂСѓРєРё(1)', btn_size) then playAnim("wtchrace_in", "OTB", 4.0, false, false, false, true) end
+		if imgui.Button(u8'РЎР»РѕР¶РёС‚СЊ СЂСѓРєРё(2)', btn_size) then playAnim("prst_loopa", "GRAVEYARD", 4.0, false, false, false, true) end
+		if imgui.Button(u8'РџСЂРѕРёРіСЂС‹С€СЊ(1<-)', btn_size) then playAnim("wtchrace_lose", "OTB", 4.0, false, false, false, true) end
+		if imgui.Button(u8'Р’С‹РёРіСЂС‹С€СЊ(1<-)', btn_size) then playAnim("wtchrace_win", "OTB", 4.0, false, false, false, true) end
+		if imgui.Button(u8'РџРѕСЃРјРѕС‚СЂРµС‚СЊ РЅР° С‡Р°СЃС‹(1<-)', btn_size) then playAnim("Coplook_watch", "COP_AMBIENT", 4.0, false, false, false, true) end
+		if imgui.Button(u8'Р—Р°РґСѓРјР°С‚СЊСЃСЏ(1<-)', btn_size) then playAnim("Coplook_think", "COP_AMBIENT", 4.0, false, false, false, true) end
+		if imgui.Button(u8'РџРѕС‡РµСЃР°С‚СЊ РїР°С…', btn_size) then playAnim("Scratchballs_01", "MISC", 4.0, false, false, false, false) end
+		if imgui.Button(u8'РџРµСЂРµРґР°С‚СЊ РґРµРЅСЊРіРё', btn_size) then playAnim("shop_pay", "INT_SHOP", 4.0, false, false, false, false) end
+		if imgui.Button(u8'РџР»Р°РєР°С‚СЊ(1)', btn_size) then playAnim("mrnF_loop", "GRAVEYARD", 4.0, true, false, false, false) end
+		if imgui.Button(u8'РџР»Р°РєР°С‚СЊ(2)', btn_size) then playAnim("mrnM_loop", "GRAVEYARD", 4.0, true, false, false, false) end
+		if imgui.Button(u8'Р’С‹С‚Р°С‰РёС‚СЊ РёР· РїРѕРґ СЃС‚РѕР»Р°', btn_size) then playAnim("Barserve_bottle", "BAR", 4.0, false, false, false, false) end
+		if imgui.Button(u8'РњР°С…РЅСѓС‚СЊ СЂСѓРєРѕР№(1)', btn_size) then playAnim("Laugh_01", "RAPPING", 4.0, false, false, false, false) end
+		if imgui.Button(u8'РњР°С…РЅСѓС‚СЊ СЂСѓРєРѕР№(2)', btn_size) then playAnim("wave_loop", "ON_LOOKERS", 4.0, true, false, false, false) end
+		if imgui.Button(u8'РњР°С…РЅСѓС‚СЊ СЂСѓРєРѕР№(3)', btn_size) then playAnim("BD_GF_Wave", "BD_FIRE", 4.0, false, false, false, false) end	
 		elseif act == 3 then
-		if imgui.Button(u8'<< Назад', btn_size) then act = 0 end
-		imgui.Text(u8'Сесть:')
-		if imgui.Button(u8'Сесть(1)', btn_size) then playAnim("Stepsit_in", "Attractors", 4.0, false, false, false, true) end
-		if imgui.Button(u8'Сесть(2)', btn_size) then playAnim("ParkSit_M_loop", "BEACH", 4.0, true, false, false, false) end
-		if imgui.Button(u8'Сесть(3)', btn_size) then playAnim("LOU_In", "INT_HOUSE", 4.0, false, false, false, true) end
-		if imgui.Button(u8'Сесть(4)', btn_size) then playAnim("ParkSit_W_loop", "BEACH", 4.0, true, false, false, false) end
-		if imgui.Button(u8'Сесть(5)', btn_size) then playAnim("ParkSit_M_in", "SUNBATHE", 4.0, false, false, false, true) end
-		if imgui.Button(u8'Вытереть лоб(5<-)', btn_size) then playAnim("ParkSit_M_IdleB", "SUNBATHE", 4.0, false, false, false, true) end
-		if imgui.Button(u8'Почесать пах(5<-)', btn_size) then playAnim("ParkSit_M_IdleC", "SUNBATHE", 4.0, false, false, false, true) end
-		if imgui.Button(u8'Сесть(6)', btn_size) then playAnim("ParkSit_W_in", "SUNBATHE", 4.0, false, false, false, true) end
-		if imgui.Button(u8'Почесать попу(6<-)', btn_size) then playAnim("ParkSit_W_idleC", "SUNBATHE", 4.0, false, false, false, true) end
-		if imgui.Button(u8'Сесть(Быть слева)', btn_size) then playAnim("FF_Sit_In_L", "FOOD", 4.0, false, false, false, true) end
-		if imgui.Button(u8'Сесть(Быть справа)', btn_size) then playAnim("FF_Sit_In_R", "FOOD", 4.0, false, false, false, true) end
-		imgui.Text(u8'Лечь:')
-		if imgui.Button(u8'Лечь(1)', btn_size) then playAnim("bather", "BEACH", 4.0, true, false, false, false) end
-		if imgui.Button(u8'Лечь(2)', btn_size) then playAnim("Lay_Bac_Loop", "BEACH", 4.0, true, false, false, false) end
-		if imgui.Button(u8'Лечь(3)', btn_size) then playAnim("SitnWait_loop_W", "BEACH", 4.0, true, false, false, false) end
-		if imgui.Button(u8'Лечь(4)', btn_size) then playAnim("batherdown", "SUNBATHE", 4.0, false, false, false, true) end	
-		if imgui.Button(u8'Лечь(Быть слева)', btn_size) then playAnim("BED_In_L", "INT_HOUSE", 4.0, false, false, false, true) end
-		if imgui.Button(u8'Лечь(Быть справа)', btn_size) then playAnim("BED_In_R", "INT_HOUSE", 4.0, false, false, false, true) end
-		imgui.Text(u8'Другие:')
-		if imgui.Button(u8'Ранен(1)', btn_size) then playAnim("crckidle1", "CRACK", 4.0, false, false, false, true) end
-		if imgui.Button(u8'Ранен(2)', btn_size) then playAnim("crckidle2", "CRACK", 4.0, false, false, false, true) end
-		if imgui.Button(u8'Ранен(3)', btn_size) then playAnim("crckidle3", "CRACK", 4.0, false, false, false, true) end
-		if imgui.Button(u8'Ранен(4)', btn_size) then playAnim("crckidle4", "CRACK", 4.0, false, false, false, true) end
+		if imgui.Button(u8'<< РќР°Р·Р°Рґ', btn_size) then act = 0 end
+		imgui.Text(u8'РЎРµСЃС‚СЊ:')
+		if imgui.Button(u8'РЎРµСЃС‚СЊ(1)', btn_size) then playAnim("Stepsit_in", "Attractors", 4.0, false, false, false, true) end
+		if imgui.Button(u8'РЎРµСЃС‚СЊ(2)', btn_size) then playAnim("ParkSit_M_loop", "BEACH", 4.0, true, false, false, false) end
+		if imgui.Button(u8'РЎРµСЃС‚СЊ(3)', btn_size) then playAnim("LOU_In", "INT_HOUSE", 4.0, false, false, false, true) end
+		if imgui.Button(u8'РЎРµСЃС‚СЊ(4)', btn_size) then playAnim("ParkSit_W_loop", "BEACH", 4.0, true, false, false, false) end
+		if imgui.Button(u8'РЎРµСЃС‚СЊ(5)', btn_size) then playAnim("ParkSit_M_in", "SUNBATHE", 4.0, false, false, false, true) end
+		if imgui.Button(u8'Р’С‹С‚РµСЂРµС‚СЊ Р»РѕР±(5<-)', btn_size) then playAnim("ParkSit_M_IdleB", "SUNBATHE", 4.0, false, false, false, true) end
+		if imgui.Button(u8'РџРѕС‡РµСЃР°С‚СЊ РїР°С…(5<-)', btn_size) then playAnim("ParkSit_M_IdleC", "SUNBATHE", 4.0, false, false, false, true) end
+		if imgui.Button(u8'РЎРµСЃС‚СЊ(6)', btn_size) then playAnim("ParkSit_W_in", "SUNBATHE", 4.0, false, false, false, true) end
+		if imgui.Button(u8'РџРѕС‡РµСЃР°С‚СЊ РїРѕРїСѓ(6<-)', btn_size) then playAnim("ParkSit_W_idleC", "SUNBATHE", 4.0, false, false, false, true) end
+		if imgui.Button(u8'РЎРµСЃС‚СЊ(Р‘С‹С‚СЊ СЃР»РµРІР°)', btn_size) then playAnim("FF_Sit_In_L", "FOOD", 4.0, false, false, false, true) end
+		if imgui.Button(u8'РЎРµСЃС‚СЊ(Р‘С‹С‚СЊ СЃРїСЂР°РІР°)', btn_size) then playAnim("FF_Sit_In_R", "FOOD", 4.0, false, false, false, true) end
+		imgui.Text(u8'Р›РµС‡СЊ:')
+		if imgui.Button(u8'Р›РµС‡СЊ(1)', btn_size) then playAnim("bather", "BEACH", 4.0, true, false, false, false) end
+		if imgui.Button(u8'Р›РµС‡СЊ(2)', btn_size) then playAnim("Lay_Bac_Loop", "BEACH", 4.0, true, false, false, false) end
+		if imgui.Button(u8'Р›РµС‡СЊ(3)', btn_size) then playAnim("SitnWait_loop_W", "BEACH", 4.0, true, false, false, false) end
+		if imgui.Button(u8'Р›РµС‡СЊ(4)', btn_size) then playAnim("batherdown", "SUNBATHE", 4.0, false, false, false, true) end	
+		if imgui.Button(u8'Р›РµС‡СЊ(Р‘С‹С‚СЊ СЃР»РµРІР°)', btn_size) then playAnim("BED_In_L", "INT_HOUSE", 4.0, false, false, false, true) end
+		if imgui.Button(u8'Р›РµС‡СЊ(Р‘С‹С‚СЊ СЃРїСЂР°РІР°)', btn_size) then playAnim("BED_In_R", "INT_HOUSE", 4.0, false, false, false, true) end
+		imgui.Text(u8'Р”СЂСѓРіРёРµ:')
+		if imgui.Button(u8'Р Р°РЅРµРЅ(1)', btn_size) then playAnim("crckidle1", "CRACK", 4.0, false, false, false, true) end
+		if imgui.Button(u8'Р Р°РЅРµРЅ(2)', btn_size) then playAnim("crckidle2", "CRACK", 4.0, false, false, false, true) end
+		if imgui.Button(u8'Р Р°РЅРµРЅ(3)', btn_size) then playAnim("crckidle3", "CRACK", 4.0, false, false, false, true) end
+		if imgui.Button(u8'Р Р°РЅРµРЅ(4)', btn_size) then playAnim("crckidle4", "CRACK", 4.0, false, false, false, true) end
 		elseif act == 4 then
-		if imgui.Button(u8'<< Назад', btn_size) then act = 0 end
-		if imgui.Button(u8'Сесть(быть позади стула)', btn_size) then playAnim("OFF_Sit_In", "INT_OFFICE", 4.0, false, true, false, true) end	
-		if imgui.Button(u8'Стукнуть по столу', btn_size) then playAnim("OFF_Sit_Crash", "INT_OFFICE", 4.0, false, false, false, true) end
-		if imgui.Button(u8'Выпить(за столом)', btn_size) then playAnim("OFF_Sit_Drink", "INT_OFFICE", 4.0, false, false, false, true) end
-		if imgui.Button(u8'Печатать', btn_size) then playAnim("OFF_Sit_Type_Loop", "INT_OFFICE", 4.0, true, false, false, false) end
-		if imgui.Button(u8'Посмотреть на часы(за столом)', btn_size) then playAnim("OFF_Sit_Watch", "INT_OFFICE", 4.0, false, false, false, true) end
-		if imgui.Button(u8'Встать из-за стола', btn_size) then playAnim("OFF_Sit_2Idle_180", "INT_OFFICE", 4.0, false, true, true, false) end
+		if imgui.Button(u8'<< РќР°Р·Р°Рґ', btn_size) then act = 0 end
+		if imgui.Button(u8'РЎРµСЃС‚СЊ(Р±С‹С‚СЊ РїРѕР·Р°РґРё СЃС‚СѓР»Р°)', btn_size) then playAnim("OFF_Sit_In", "INT_OFFICE", 4.0, false, true, false, true) end	
+		if imgui.Button(u8'РЎС‚СѓРєРЅСѓС‚СЊ РїРѕ СЃС‚РѕР»Сѓ', btn_size) then playAnim("OFF_Sit_Crash", "INT_OFFICE", 4.0, false, false, false, true) end
+		if imgui.Button(u8'Р’С‹РїРёС‚СЊ(Р·Р° СЃС‚РѕР»РѕРј)', btn_size) then playAnim("OFF_Sit_Drink", "INT_OFFICE", 4.0, false, false, false, true) end
+		if imgui.Button(u8'РџРµС‡Р°С‚Р°С‚СЊ', btn_size) then playAnim("OFF_Sit_Type_Loop", "INT_OFFICE", 4.0, true, false, false, false) end
+		if imgui.Button(u8'РџРѕСЃРјРѕС‚СЂРµС‚СЊ РЅР° С‡Р°СЃС‹(Р·Р° СЃС‚РѕР»РѕРј)', btn_size) then playAnim("OFF_Sit_Watch", "INT_OFFICE", 4.0, false, false, false, true) end
+		if imgui.Button(u8'Р’СЃС‚Р°С‚СЊ РёР·-Р·Р° СЃС‚РѕР»Р°', btn_size) then playAnim("OFF_Sit_2Idle_180", "INT_OFFICE", 4.0, false, true, true, false) end
 		elseif act == 5 then
-		if imgui.Button(u8'<< Назад', btn_size) then act = 0 end
-		if imgui.Button(u8'Стоять раком(1)', btn_size) then playAnim("SnM_Caned_Idle_P", "SnM", 4.0, true, false, false, false) end
-		if imgui.Button(u8'Стоять раком(2)', btn_size) then playAnim("Spanking_IdleW", "SnM", 4.0, true, false, false, false) end
-		if imgui.Button(u8'Шлепок по попе(1)', btn_size) then playAnim("SnM_Cane_P", "SnM", 4.0, true, false, false, false) end
-		if imgui.Button(u8'Шлепок по попе(2)', btn_size) then playAnim("SpankingP", "SnM", 4.0, true, false, false, false) end
-		if imgui.Button(u8'Дёргаться от шлепка(1)', btn_size) then playAnim("SnM_Cane_W", "SnM", 4.0, true, false, false, false) end
-		if imgui.Button(u8'Дёргаться от шлепка(2)', btn_size) then playAnim("SpankingW", "SnM", 4.0, true, false, false, false) end
-		if imgui.Button(u8'Сильный шлепок по попе', btn_size) then playAnim("Spanking_endP", "SnM", 4.0, false, false, false, false) end	
-		if imgui.Button(u8'Падение от шлепка', btn_size) then playAnim("Spanking_endW", "SnM", 4.0, false, true, false, true) end
-		if imgui.Button(u8'Лёгкий шлепок по попе(Сбоку)', btn_size) then playAnim("sweet_ass_slap", "SWEET", 4.0, false, false, false, false) end
-		if imgui.Button(u8'Стоять на коленях', btn_size) then playAnim("Sweet_injuredloop", "SWEET", 4.0, false, false, false, true) end
-		if imgui.Button(u8'Дрочить(1)', btn_size) then playAnim("wank_loop", "PAULNMAC", 4.0, true, false, false, false) end
-		if imgui.Button(u8'Дрочить(1<-)', btn_size) then playAnim("wank_out", "PAULNMAC", 4.0, false, false, false, false) end
-		if imgui.Button(u8'Секс 1.1(M)', btn_size) then playAnim("SEX_1_CUM_P", "SEX", 4.0, true, false, false, false) end
-		if imgui.Button(u8'Секс 1.1(W)', btn_size) then playAnim("SEX_1_CUM_W", "SEX", 4.0, true, false, false, false) end
-		if imgui.Button(u8'Секс 1.2(M)', btn_size) then playAnim("SEX_1_P", "SEX", 4.0, true, false, false, false) end
-		if imgui.Button(u8'Секс 1.2(W)', btn_size) then playAnim("SEX_1_W", "SEX", 4.0, true, false, false, false) end
-		if imgui.Button(u8'Секс 1.3(M)', btn_size) then playAnim("SEX_1_FAIL_P", "SEX", 4.0, false, false, false, true) end
-		if imgui.Button(u8'Секс 1.3(W)', btn_size) then playAnim("SEX_1_FAIL_W", "SEX", 4.0, false, false, false, true) end
-		if imgui.Button(u8'Секс 2.1(M)', btn_size) then playAnim("SEX_2_P", "SEX", 4.0, true, false, false, false) end
-		if imgui.Button(u8'Секс 2.1(W)', btn_size) then playAnim("SEX_2_W", "SEX", 4.0, true, false, false, false) end
-		if imgui.Button(u8'Секс 2.2(M)', btn_size) then playAnim("SEX_2_FAIL_P", "SEX", 4.0, false, false, false, true) end
-		if imgui.Button(u8'Секс 2.2(W)', btn_size) then playAnim("SEX_2_FAIL_W", "SEX", 4.0, false, false, false, true) end	
-		if imgui.Button(u8'Секс 3.1(M)', btn_size) then playAnim("SEX_3_P", "SEX", 4.0, true, false, false, false) end	
-		if imgui.Button(u8'Секс 3.1(W)', btn_size) then playAnim("SEX_3_W", "SEX", 4.0, true, false, false, false) end
-		if imgui.Button(u8'Секс 3.2(M)', btn_size) then playAnim("SEX_3_FAIL_P", "SEX", 4.0, false, false, false, true) end
-		if imgui.Button(u8'Секс 3.2(W)', btn_size) then playAnim("SEX_3_FAIL_W", "SEX", 4.0, false, false, false, true) end	
+		if imgui.Button(u8'<< РќР°Р·Р°Рґ', btn_size) then act = 0 end
+		if imgui.Button(u8'РЎС‚РѕСЏС‚СЊ СЂР°РєРѕРј(1)', btn_size) then playAnim("SnM_Caned_Idle_P", "SnM", 4.0, true, false, false, false) end
+		if imgui.Button(u8'РЎС‚РѕСЏС‚СЊ СЂР°РєРѕРј(2)', btn_size) then playAnim("Spanking_IdleW", "SnM", 4.0, true, false, false, false) end
+		if imgui.Button(u8'РЁР»РµРїРѕРє РїРѕ РїРѕРїРµ(1)', btn_size) then playAnim("SnM_Cane_P", "SnM", 4.0, true, false, false, false) end
+		if imgui.Button(u8'РЁР»РµРїРѕРє РїРѕ РїРѕРїРµ(2)', btn_size) then playAnim("SpankingP", "SnM", 4.0, true, false, false, false) end
+		if imgui.Button(u8'Р”С‘СЂРіР°С‚СЊСЃСЏ РѕС‚ С€Р»РµРїРєР°(1)', btn_size) then playAnim("SnM_Cane_W", "SnM", 4.0, true, false, false, false) end
+		if imgui.Button(u8'Р”С‘СЂРіР°С‚СЊСЃСЏ РѕС‚ С€Р»РµРїРєР°(2)', btn_size) then playAnim("SpankingW", "SnM", 4.0, true, false, false, false) end
+		if imgui.Button(u8'РЎРёР»СЊРЅС‹Р№ С€Р»РµРїРѕРє РїРѕ РїРѕРїРµ', btn_size) then playAnim("Spanking_endP", "SnM", 4.0, false, false, false, false) end	
+		if imgui.Button(u8'РџР°РґРµРЅРёРµ РѕС‚ С€Р»РµРїРєР°', btn_size) then playAnim("Spanking_endW", "SnM", 4.0, false, true, false, true) end
+		if imgui.Button(u8'Р›С‘РіРєРёР№ С€Р»РµРїРѕРє РїРѕ РїРѕРїРµ(РЎР±РѕРєСѓ)', btn_size) then playAnim("sweet_ass_slap", "SWEET", 4.0, false, false, false, false) end
+		if imgui.Button(u8'РЎС‚РѕСЏС‚СЊ РЅР° РєРѕР»РµРЅСЏС…', btn_size) then playAnim("Sweet_injuredloop", "SWEET", 4.0, false, false, false, true) end
+		if imgui.Button(u8'Р”СЂРѕС‡РёС‚СЊ(1)', btn_size) then playAnim("wank_loop", "PAULNMAC", 4.0, true, false, false, false) end
+		if imgui.Button(u8'Р”СЂРѕС‡РёС‚СЊ(1<-)', btn_size) then playAnim("wank_out", "PAULNMAC", 4.0, false, false, false, false) end
+		if imgui.Button(u8'РЎРµРєСЃ 1.1(M)', btn_size) then playAnim("SEX_1_CUM_P", "SEX", 4.0, true, false, false, false) end
+		if imgui.Button(u8'РЎРµРєСЃ 1.1(W)', btn_size) then playAnim("SEX_1_CUM_W", "SEX", 4.0, true, false, false, false) end
+		if imgui.Button(u8'РЎРµРєСЃ 1.2(M)', btn_size) then playAnim("SEX_1_P", "SEX", 4.0, true, false, false, false) end
+		if imgui.Button(u8'РЎРµРєСЃ 1.2(W)', btn_size) then playAnim("SEX_1_W", "SEX", 4.0, true, false, false, false) end
+		if imgui.Button(u8'РЎРµРєСЃ 1.3(M)', btn_size) then playAnim("SEX_1_FAIL_P", "SEX", 4.0, false, false, false, true) end
+		if imgui.Button(u8'РЎРµРєСЃ 1.3(W)', btn_size) then playAnim("SEX_1_FAIL_W", "SEX", 4.0, false, false, false, true) end
+		if imgui.Button(u8'РЎРµРєСЃ 2.1(M)', btn_size) then playAnim("SEX_2_P", "SEX", 4.0, true, false, false, false) end
+		if imgui.Button(u8'РЎРµРєСЃ 2.1(W)', btn_size) then playAnim("SEX_2_W", "SEX", 4.0, true, false, false, false) end
+		if imgui.Button(u8'РЎРµРєСЃ 2.2(M)', btn_size) then playAnim("SEX_2_FAIL_P", "SEX", 4.0, false, false, false, true) end
+		if imgui.Button(u8'РЎРµРєСЃ 2.2(W)', btn_size) then playAnim("SEX_2_FAIL_W", "SEX", 4.0, false, false, false, true) end	
+		if imgui.Button(u8'РЎРµРєСЃ 3.1(M)', btn_size) then playAnim("SEX_3_P", "SEX", 4.0, true, false, false, false) end	
+		if imgui.Button(u8'РЎРµРєСЃ 3.1(W)', btn_size) then playAnim("SEX_3_W", "SEX", 4.0, true, false, false, false) end
+		if imgui.Button(u8'РЎРµРєСЃ 3.2(M)', btn_size) then playAnim("SEX_3_FAIL_P", "SEX", 4.0, false, false, false, true) end
+		if imgui.Button(u8'РЎРµРєСЃ 3.2(W)', btn_size) then playAnim("SEX_3_FAIL_W", "SEX", 4.0, false, false, false, true) end	
 		elseif act == 6 then
-		if imgui.Button(u8'<< Назад', btn_size) then act = 0 end
-		if imgui.Button(u8'Тошнота', btn_size) then playAnim("EAT_Vomit_P", "FOOD", 4.0, false, false, false, false) end
-		if imgui.Button(u8'Упасть', btn_size) then playAnim("CAS_G2_GasKO", "HEIST9", 4.0, false, false, false, true) end
-		if imgui.Button(u8'Смерть(1)', btn_size) then playAnim("CS_Dead_Guy", "WUZI", 4.0, false, false, false, true) end
-		if imgui.Button(u8'Смерть(2)', btn_size) then playAnim("KILL_Knife_Ped_Die", "KNIFE", 4.0, false, false, false, true) end
-		if imgui.Button(u8'Махи руками(1)', btn_size) then playAnim("RAP_A_Loop", "LOWRIDER", 4.0, true, false, false, false) end
-		if imgui.Button(u8'Махи руками(2)', btn_size) then playAnim("RAP_B_Loop", "LOWRIDER", 4.0, true, false, false, false) end
-		if imgui.Button(u8'Повиснуть на руках', btn_size) then playAnim("tran_stmb", "TRAIN", 4.0, false, false, false, true) end
-		if imgui.Button(u8'Повиснуть на ногах', btn_size) then playAnim("swt_vnt_sht_in", "SWAT", 4.0, false, false, false, true) end
-		if imgui.Button(u8'Надеть маску', btn_size) then playAnim("ROB_Shifty", "SHOP", 4.0, true, false, false, false) end
-		if imgui.Button(u8'Расставить руки', btn_size) then playAnim("RIOT_ANGRY", "RIOT", 4.0, true, false, false, false) end
-		if imgui.Button(u8'Разминаться', btn_size) then playAnim("stretch", "PLAYIDLES", 4.0, true, false, false, false) end
-		if imgui.Button(u8'Нажать на кнопку', btn_size) then playAnim("Plunger_01", "MISC", 4.0, false, false, false, false) end
-		if imgui.Button(u8'Опереться на стену(1)', btn_size) then playAnim("leanIN", "GANGS", 4.0, false, false, false, true) end
-		if imgui.Button(u8'Опереться на стену(2)', btn_size) then playAnim("Plyrlean_loop", "MISC", 4.0, false, false, false, true) end
-		if imgui.Button(u8'Тоaлкнуть', btn_size) then playAnim("shake_cara", "GANGS", 4.0, false, false, false, false) end
-		if imgui.Button(u8'Толкнуть ногой', btn_size) then playAnim("shake_carK", "GANGS", 4.0, false, false, false, false) end
-		if imgui.Button(u8'Толкнуть корпусом', btn_size) then playAnim("shake_carSH", "GANGS", 4.0, false, false, false, false) end
-		if imgui.Button(u8'Отдышка', btn_size) then playAnim("IDLE_tired", "FAT", 4.0, true, false, false, false) end
-		if imgui.Button(u8'Чинить машину', btn_size) then playAnim("Fixn_Car_Loop", "CAR", 4.0, true, false, false, false) end	
-		if imgui.Button(u8'Дать отмашку', btn_size) then playAnim("flag_drop", "CAR", 4.0, false, false, false, false) end	
-		if imgui.Button(u8'Заложить бомбу', btn_size) then playAnim("BOM_Plant", "BOMBER", 4.0, false, false, false, false) end	
+		if imgui.Button(u8'<< РќР°Р·Р°Рґ', btn_size) then act = 0 end
+		if imgui.Button(u8'РўРѕС€РЅРѕС‚Р°', btn_size) then playAnim("EAT_Vomit_P", "FOOD", 4.0, false, false, false, false) end
+		if imgui.Button(u8'РЈРїР°СЃС‚СЊ', btn_size) then playAnim("CAS_G2_GasKO", "HEIST9", 4.0, false, false, false, true) end
+		if imgui.Button(u8'РЎРјРµСЂС‚СЊ(1)', btn_size) then playAnim("CS_Dead_Guy", "WUZI", 4.0, false, false, false, true) end
+		if imgui.Button(u8'РЎРјРµСЂС‚СЊ(2)', btn_size) then playAnim("KILL_Knife_Ped_Die", "KNIFE", 4.0, false, false, false, true) end
+		if imgui.Button(u8'РњР°С…Рё СЂСѓРєР°РјРё(1)', btn_size) then playAnim("RAP_A_Loop", "LOWRIDER", 4.0, true, false, false, false) end
+		if imgui.Button(u8'РњР°С…Рё СЂСѓРєР°РјРё(2)', btn_size) then playAnim("RAP_B_Loop", "LOWRIDER", 4.0, true, false, false, false) end
+		if imgui.Button(u8'РџРѕРІРёСЃРЅСѓС‚СЊ РЅР° СЂСѓРєР°С…', btn_size) then playAnim("tran_stmb", "TRAIN", 4.0, false, false, false, true) end
+		if imgui.Button(u8'РџРѕРІРёСЃРЅСѓС‚СЊ РЅР° РЅРѕРіР°С…', btn_size) then playAnim("swt_vnt_sht_in", "SWAT", 4.0, false, false, false, true) end
+		if imgui.Button(u8'РќР°РґРµС‚СЊ РјР°СЃРєСѓ', btn_size) then playAnim("ROB_Shifty", "SHOP", 4.0, true, false, false, false) end
+		if imgui.Button(u8'Р Р°СЃСЃС‚Р°РІРёС‚СЊ СЂСѓРєРё', btn_size) then playAnim("RIOT_ANGRY", "RIOT", 4.0, true, false, false, false) end
+		if imgui.Button(u8'Р Р°Р·РјРёРЅР°С‚СЊСЃСЏ', btn_size) then playAnim("stretch", "PLAYIDLES", 4.0, true, false, false, false) end
+		if imgui.Button(u8'РќР°Р¶Р°С‚СЊ РЅР° РєРЅРѕРїРєСѓ', btn_size) then playAnim("Plunger_01", "MISC", 4.0, false, false, false, false) end
+		if imgui.Button(u8'РћРїРµСЂРµС‚СЊСЃСЏ РЅР° СЃС‚РµРЅСѓ(1)', btn_size) then playAnim("leanIN", "GANGS", 4.0, false, false, false, true) end
+		if imgui.Button(u8'РћРїРµСЂРµС‚СЊСЃСЏ РЅР° СЃС‚РµРЅСѓ(2)', btn_size) then playAnim("Plyrlean_loop", "MISC", 4.0, false, false, false, true) end
+		if imgui.Button(u8'РўРѕaР»РєРЅСѓС‚СЊ', btn_size) then playAnim("shake_cara", "GANGS", 4.0, false, false, false, false) end
+		if imgui.Button(u8'РўРѕР»РєРЅСѓС‚СЊ РЅРѕРіРѕР№', btn_size) then playAnim("shake_carK", "GANGS", 4.0, false, false, false, false) end
+		if imgui.Button(u8'РўРѕР»РєРЅСѓС‚СЊ РєРѕСЂРїСѓСЃРѕРј', btn_size) then playAnim("shake_carSH", "GANGS", 4.0, false, false, false, false) end
+		if imgui.Button(u8'РћС‚РґС‹С€РєР°', btn_size) then playAnim("IDLE_tired", "FAT", 4.0, true, false, false, false) end
+		if imgui.Button(u8'Р§РёРЅРёС‚СЊ РјР°С€РёРЅСѓ', btn_size) then playAnim("Fixn_Car_Loop", "CAR", 4.0, true, false, false, false) end	
+		if imgui.Button(u8'Р”Р°С‚СЊ РѕС‚РјР°С€РєСѓ', btn_size) then playAnim("flag_drop", "CAR", 4.0, false, false, false, false) end	
+		if imgui.Button(u8'Р—Р°Р»РѕР¶РёС‚СЊ Р±РѕРјР±Сѓ', btn_size) then playAnim("BOM_Plant", "BOMBER", 4.0, false, false, false, false) end	
 		elseif act == 7 then
-		if imgui.Button(u8'<< Назад', btn_size) then act = 0 end
-		imgui.Text(u8'Анимации для GTA:SA.\nСкрипт работает на всех популярных\nпроектах(античит может реагировать\nна пак Секс).')
-		imgui.Text(u8'"<-" - Показывает на анимацию,\nкоторую нужно использовать перед\nследующей.')
-		imgui.Text(u8'W - для девушек\nM - для парней')
-		imgui.Text(u8'© Snoopcheg')
-		if imgui.CollapsingHeader(u8'Настройки')then
-			imgui.Text(u8'Основное окно')
+		if imgui.Button(u8'<< РќР°Р·Р°Рґ', btn_size) then act = 0 end
+		imgui.Text(u8'РђРЅРёРјР°С†РёРё РґР»СЏ GTA:SA.\nРЎРєСЂРёРїС‚ СЂР°Р±РѕС‚Р°РµС‚ РЅР° РІСЃРµС… РїРѕРїСѓР»СЏСЂРЅС‹С…\nРїСЂРѕРµРєС‚Р°С…(Р°РЅС‚РёС‡РёС‚ РјРѕР¶РµС‚ СЂРµР°РіРёСЂРѕРІР°С‚СЊ\nРЅР° РїР°Рє РЎРµРєСЃ).')
+		imgui.Text(u8'"<-" - РџРѕРєР°Р·С‹РІР°РµС‚ РЅР° Р°РЅРёРјР°С†РёСЋ,\nРєРѕС‚РѕСЂСѓСЋ РЅСѓР¶РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РїРµСЂРµРґ\nСЃР»РµРґСѓСЋС‰РµР№.')
+		imgui.Text(u8'W - РґР»СЏ РґРµРІСѓС€РµРє\nM - РґР»СЏ РїР°СЂРЅРµР№')
+		imgui.Text(u8'В© Snoopcheg')
+		if imgui.CollapsingHeader(u8'РќР°СЃС‚СЂРѕР№РєРё')then
+			imgui.Text(u8'РћСЃРЅРѕРІРЅРѕРµ РѕРєРЅРѕ')
 			imgui.SliderInt('X position##1', xmainslider, 130, gw - 135)
 			imgui.SliderInt('Y position##1', ymainslider, 120, gh - 120)
-			imgui.Text(u8'Вторичное окно')
+			imgui.Text(u8'Р’С‚РѕСЂРёС‡РЅРѕРµ РѕРєРЅРѕ')
 			imgui.SliderInt('X position##2', xsecondslider, 120, gw - 120)
 			imgui.SliderInt('Y position##2', ysecondslider, 30, gh - 30)
-			imgui.Checkbox(u8'Активация только командой', actkey)
+			imgui.Checkbox(u8'РђРєС‚РёРІР°С†РёСЏ С‚РѕР»СЊРєРѕ РєРѕРјР°РЅРґРѕР№', actkey)
 			if inicfg.save(mainIni, "..\\config\\anims\\animation.ini") then
 				mainIni = {
 					location = {
@@ -268,7 +268,7 @@ local mainFrame = imgui.OnFrame(
 				} inicfg.save(mainIni, "..\\config\\anims\\animation.ini")
 			end
 			inicfg.load(mainIni, "..\\config\\anims\\animation.ini")
-			if imgui.Button(u8'Перезагрузить', btn_size) then
+			if imgui.Button(u8'РџРµСЂРµР·Р°РіСЂСѓР·РёС‚СЊ', btn_size) then
 				thisScript():reload()
 			end
 		end
@@ -351,21 +351,21 @@ function autoupdate(json_url, prefix, url)
               lua_thread.create(function(prefix)
                 local dlstatus = require('moonloader').download_status
                 local color = -1
-                sampAddChatMessage((prefix..'Обнаружено обновление. Пытаюсь обновиться c '..thisScript().version..' на '..updateversion), color)
+                sampAddChatMessage((prefix..'РћР±РЅР°СЂСѓР¶РµРЅРѕ РѕР±РЅРѕРІР»РµРЅРёРµ. РџС‹С‚Р°СЋСЃСЊ РѕР±РЅРѕРІРёС‚СЊСЃСЏ c '..thisScript().version..' РЅР° '..updateversion), color)
                 wait(250)
                 downloadUrlToFile(updatelink, thisScript().path,
                   function(id3, status1, p13, p23)
                     if status1 == dlstatus.STATUS_DOWNLOADINGDATA then
-                      print(string.format('Загружено %d из %d.', p13, p23))
+                      print(string.format('Р—Р°РіСЂСѓР¶РµРЅРѕ %d РёР· %d.', p13, p23))
                     elseif status1 == dlstatus.STATUS_ENDDOWNLOADDATA then
-                      print('Загрузка обновления завершена.')
-                      sampAddChatMessage((prefix..'Обновление завершено!'), color)
+                      print('Р—Р°РіСЂСѓР·РєР° РѕР±РЅРѕРІР»РµРЅРёСЏ Р·Р°РІРµСЂС€РµРЅР°.')
+                      sampAddChatMessage((prefix..'РћР±РЅРѕРІР»РµРЅРёРµ Р·Р°РІРµСЂС€РµРЅРѕ!'), color)
                       goupdatestatus = true
                       lua_thread.create(function() wait(500) thisScript():reload() end)
                     end
                     if status1 == dlstatus.STATUSEX_ENDDOWNLOAD then
                       if goupdatestatus == nil then
-                        sampAddChatMessage((prefix..'Обновление прошло неудачно. Запускаю устаревшую версию..'), color)
+                        sampAddChatMessage((prefix..'РћР±РЅРѕРІР»РµРЅРёРµ РїСЂРѕС€Р»Рѕ РЅРµСѓРґР°С‡РЅРѕ. Р—Р°РїСѓСЃРєР°СЋ СѓСЃС‚Р°СЂРµРІС€СѓСЋ РІРµСЂСЃРёСЋ..'), color)
                         update = false
                       end
                     end
@@ -375,11 +375,11 @@ function autoupdate(json_url, prefix, url)
               )
             else
               update = false
-              print('v'..thisScript().version..': Обновление не требуется.')
+              print('v'..thisScript().version..': РћР±РЅРѕРІР»РµРЅРёРµ РЅРµ С‚СЂРµР±СѓРµС‚СЃСЏ.')
             end
           end
         else
-          print('v'..thisScript().version..': Не могу проверить обновление. Смиритесь или проверьте самостоятельно на '..url)
+          print('v'..thisScript().version..': РќРµ РјРѕРіСѓ РїСЂРѕРІРµСЂРёС‚СЊ РѕР±РЅРѕРІР»РµРЅРёРµ. РЎРјРёСЂРёС‚РµСЃСЊ РёР»Рё РїСЂРѕРІРµСЂСЊС‚Рµ СЃР°РјРѕСЃС‚РѕСЏС‚РµР»СЊРЅРѕ РЅР° '..url)
           update = false
         end
       end
@@ -399,14 +399,14 @@ function openchangelog(url)
                     end
                     sampShowDialog(
                         222228,
-                        "{ff0000}Информация об обновлении",
+                        "{ff0000}РРЅС„РѕСЂРјР°С†РёСЏ РѕР± РѕР±РЅРѕРІР»РµРЅРёРё",
                         "{ffffff}" ..
                             thisScript().name ..
-                                " {ffe600}собирается открыть свой changelog для вас.\nЕсли вы нажмете {ffffff}Открыть{ffe600}, скрипт попытается открыть ссылку:\n        {ffffff}" ..
+                                " {ffe600}СЃРѕР±РёСЂР°РµС‚СЃСЏ РѕС‚РєСЂС‹С‚СЊ СЃРІРѕР№ changelog РґР»СЏ РІР°СЃ.\nР•СЃР»Рё РІС‹ РЅР°Р¶РјРµС‚Рµ {ffffff}РћС‚РєСЂС‹С‚СЊ{ffe600}, СЃРєСЂРёРїС‚ РїРѕРїС‹С‚Р°РµС‚СЃСЏ РѕС‚РєСЂС‹С‚СЊ СЃСЃС‹Р»РєСѓ:\n        {ffffff}" ..
                                     changelogurl ..
-                                        "\n{ffe600}Если ваша игра крашнется, вы можете открыть эту ссылку сами.",
-                        "Открыть",
-                        "Отменить"
+                                        "\n{ffe600}Р•СЃР»Рё РІР°С€Р° РёРіСЂР° РєСЂР°С€РЅРµС‚СЃСЏ, РІС‹ РјРѕР¶РµС‚Рµ РѕС‚РєСЂС‹С‚СЊ СЌС‚Сѓ СЃСЃС‹Р»РєСѓ СЃР°РјРё.",
+                        "РћС‚РєСЂС‹С‚СЊ",
+                        "РћС‚РјРµРЅРёС‚СЊ"
                     )
                     while sampIsDialogActive() do
                         wait(100)
