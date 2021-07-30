@@ -60,11 +60,11 @@ function playAnim(name, nameLib, speed, loop, lockX, lockY, lockF)
 end
 
 imgui.OnInitialize(function()
-    imgui.GetIO().IniFilename = nil
+    	imgui.GetIO().IniFilename = nil
 	apply_custom_style()
 	local style = imgui.GetStyle()
-    local colors = style.Colors
-    local clr = imgui.Col
+    	local colors = style.Colors
+    	local clr = imgui.Col
 	local glyph_ranges = imgui.GetIO().Fonts:GetGlyphRangesCyrillic()
 	mainfont = imgui.GetIO().Fonts:AddFontFromFileTTF(getFolderPath(0x14) .. '\\trebucbd.ttf', 16.5, nil, glyph_ranges)
 end)
@@ -86,7 +86,7 @@ local actkey = new.bool(mainIni.main.activation)
 
 local mainFrame = imgui.OnFrame(
 	function() return mainWindow.active[0] end,
-    function(self)
+    	function(self)
 		imgui.SetNextWindowPos(imgui.ImVec2(mainWindow.x[0], mainWindow.y[0]), nil, imgui.ImVec2(0.5, 0.5))
 		imgui.SetNextWindowSize(imgui.ImVec2(250, 225), imgui.Cond.FirstUseEver)
 		imgui.Begin('Anim menu', mainWindow.active, imgui.WindowFlags.NoResize + imgui.WindowFlags.NoMove)
@@ -303,7 +303,7 @@ SecondFrame = imgui.OnFrame(
 
 function main()
 	if not isSampfuncsLoaded() or not isSampLoaded() then return end
-    while not isSampAvailable() do wait(100) end
+    	while not isSampAvailable() do wait(100) end
 	if not doesFileExist('moonloader/config/anims/animation.ini') then
 		inicfg.save(mainIni, "..\\config\\anims\\animation.ini")
 	end
@@ -348,35 +348,35 @@ end
 
 function apply_custom_style()
 	local style = imgui.GetStyle()
-    local colors = style.Colors
-    local clr = imgui.Col
-    local ImVec4 = imgui.ImVec4
+   	local colors = style.Colors
+   	local clr = imgui.Col
+   	local ImVec4 = imgui.ImVec4
 
 	style.WindowBorderSize = 0.0
 	style.WindowRounding = 5.5
-    style.WindowTitleAlign = imgui.ImVec2(0.5, 0.5)
-    style.FrameRounding = 10.0
-    style.ScrollbarSize = 9.0
-    style.ScrollbarRounding = 10.0
-    style.GrabMinSize = 17.5
-    style.GrabRounding = 10.0
-    style.WindowPadding = imgui.ImVec2(3.5, 3.5)
-    style.FramePadding = imgui.ImVec2(3.5, 3.5)
-    style.ButtonTextAlign = imgui.ImVec2(0.5, 0.4)
+    	style.WindowTitleAlign = imgui.ImVec2(0.5, 0.5)
+    	style.FrameRounding = 10.0
+    	style.ScrollbarSize = 9.0
+    	style.ScrollbarRounding = 10.0
+    	style.GrabMinSize = 17.5
+    	style.GrabRounding = 10.0
+    	style.WindowPadding = imgui.ImVec2(3.5, 3.5)
+    	style.FramePadding = imgui.ImVec2(3.5, 3.5)
+    	style.ButtonTextAlign = imgui.ImVec2(0.5, 0.4)
 
 	colors[clr.Text] = ImVec4(1.00, 1.00, 1.00, 1.00)
-    colors[clr.TextDisabled] = ImVec4(0.50, 0.50, 0.50, 1.00)
-    colors[clr.WindowBg] = imgui.ImVec4(0.0, 0.0, 0.0, 0.6)
-    colors[clr.PopupBg] = ImVec4(0.08, 0.08, 0.08, 0.94)
-    colors[clr.Border] = imgui.ImVec4(0.0, 0.56, 0.60, 0.4)
-    colors[clr.BorderShadow] = ImVec4(0.00, 0.00, 0.00, 0.00)
-    colors[clr.FrameBg] = imgui.ImVec4(0.6, 0.1, 0.1, 1.0)
-    colors[clr.FrameBgHovered] = imgui.ImVec4(0.6, 0.1, 0.1, 0.5)
-    colors[clr.FrameBgActive] = imgui.ImVec4(0.6, 0.1, 0.1, 0.5)
-    colors[clr.TitleBg] = imgui.ImVec4(0.1, 0.0, 0.0, 1.0)
-    colors[clr.TitleBgActive] = imgui.ImVec4(0.6, 0.1, 0.1, 1.0)
-    colors[clr.TitleBgCollapsed] = ImVec4(0.05, 0.05, 0.05, 0.79)
-    colors[clr.CheckMark] = ImVec4(1.00, 1.00, 1.00, 1.00)
+    	colors[clr.TextDisabled] = ImVec4(0.50, 0.50, 0.50, 1.00)
+    	colors[clr.WindowBg] = imgui.ImVec4(0.0, 0.0, 0.0, 0.6)
+    	colors[clr.PopupBg] = ImVec4(0.08, 0.08, 0.08, 0.94)
+    	colors[clr.Border] = imgui.ImVec4(0.0, 0.56, 0.60, 0.4)
+    	colors[clr.BorderShadow] = ImVec4(0.00, 0.00, 0.00, 0.00)
+    	colors[clr.FrameBg] = imgui.ImVec4(0.6, 0.1, 0.1, 1.0)
+    	colors[clr.FrameBgHovered] = imgui.ImVec4(0.6, 0.1, 0.1, 0.5)
+    	colors[clr.FrameBgActive] = imgui.ImVec4(0.6, 0.1, 0.1, 0.5)
+    	colors[clr.TitleBg] = imgui.ImVec4(0.1, 0.0, 0.0, 1.0)
+    	colors[clr.TitleBgActive] = imgui.ImVec4(0.6, 0.1, 0.1, 1.0)
+    	colors[clr.TitleBgCollapsed] = ImVec4(0.05, 0.05, 0.05, 0.79)
+    	colors[clr.CheckMark] = ImVec4(1.00, 1.00, 1.00, 1.00)
 	colors[clr.Button] = imgui.ImVec4(0.6, 0.1, 0.1, 1.0)
 	colors[clr.ButtonHovered] = imgui.ImVec4(0.8, 0.1, 0.1, 1.0)
 	colors[clr.ButtonActive] = imgui.ImVec4(0.8, 0.1, 0.1, 1.0)
