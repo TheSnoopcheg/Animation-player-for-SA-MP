@@ -1,6 +1,6 @@
 script_name("Animations")
 script_author("Snoopcheg")
-script_version("0.7.4")
+script_version("0.7.5")
 
 --require 'deps' {'fyp:mimgui'}
 local key = require ('vkeys')
@@ -36,7 +36,7 @@ function loadAnims()
 		
   	local checkArray = {}; local loadCounter = 0
   	for _, v in pairs(animationlibs) do
-  		requestAnimation(v); table.insert(checkArray, hasAnimationLoaded(v)); --print('Animation ' .. v .. ' was loaded')
+  		requestAnimation(v); table.insert(checkArray, hasAnimationLoaded(v));
   	end
 
   	for k, _ in pairs(checkArray) do
@@ -61,10 +61,10 @@ end
 
 imgui.OnInitialize(function()
     imgui.GetIO().IniFilename = nil
+	apply_custom_style()
 	local style = imgui.GetStyle()
     local colors = style.Colors
     local clr = imgui.Col
-	style.WindowBorderSize = 0.0
 	local glyph_ranges = imgui.GetIO().Fonts:GetGlyphRangesCyrillic()
 	mainfont = imgui.GetIO().Fonts:AddFontFromFileTTF(getFolderPath(0x14) .. '\\trebucbd.ttf', 16.5, nil, glyph_ranges)
 end)
@@ -72,21 +72,25 @@ end)
 local antiflood = false
 local act = 0
 local new, str, sizeof = imgui.new, ffi.string, ffi.sizeof
-local renderMainWindow = new.bool()
-local renderSecondWindow = new.bool()
-local xmainslider = new.int(mainIni.location.xmain)
-local ymainslider = new.int(mainIni.location.ymain)
-local xsecondslider = new.int(mainIni.location.xsecond)
-local ysecondslider = new.int(mainIni.location.ysecond)
+local mainWindow = {
+	active = new.bool(),
+	x = new.int(mainIni.location.xmain),
+	y = new.int(mainIni.location.ymain)
+}
+local secondWindow = {
+	active = new.bool(),
+	x = new.int(mainIni.location.xsecond),
+	y = new.int(mainIni.location.ysecond)
+}
 local actkey = new.bool(mainIni.main.activation)
 
 local mainFrame = imgui.OnFrame(
-	function() return renderMainWindow[0] end,
-    function(player)
-		imgui.SetNextWindowPos(imgui.ImVec2(mainIni.location.xmain, mainIni.location.ymain), nil, imgui.ImVec2(0.5, 0.5))
+	function() return mainWindow.active[0] end,
+    function(self)
+		imgui.SetNextWindowPos(imgui.ImVec2(mainWindow.x[0], mainWindow.y[0]), nil, imgui.ImVec2(0.5, 0.5))
 		imgui.SetNextWindowSize(imgui.ImVec2(250, 225), imgui.Cond.FirstUseEver)
-		imgui.Begin('Anim menu', renderMainWindow, imgui.WindowFlags.NoResize + imgui.WindowFlags.NoMove)
-		local btn_size = imgui.ImVec2(-0.1, 0)
+		imgui.Begin('Anim menu', mainWindow.active, imgui.WindowFlags.NoResize + imgui.WindowFlags.NoMove)
+		local btn_size = imgui.ImVec2(-0.1, 21)
 		if act == 0 then
 		if imgui.Button(u8'Танцы', btn_size) then act = 1 end
 		if imgui.Button(u8'Социальное', btn_size) then act = 2 end
@@ -242,25 +246,27 @@ local mainFrame = imgui.OnFrame(
 		if imgui.Button(u8'Заложить бомбу', btn_size) then playAnim("BOM_Plant", "BOMBER", 4.0, false, false, false, false) end	
 		elseif act == 7 then
 		if imgui.Button(u8'<< Назад', btn_size) then act = 0 end
-		imgui.Text(u8'Анимации для GTA:SA.\nСкрипт работает на всех популярных\nпроектах(античит может реагировать\nна пак Секс).')
+		imgui.Text(u8'Анимации для GTA:SA.\nСкрипт работает на всех популярных\nпроектах.')
 		imgui.Text(u8'"<-" - Показывает на анимацию,\nкоторую нужно использовать перед\nследующей.')
 		imgui.Text(u8'W - для девушек\nM - для парней')
 		imgui.Text(u8'© Snoopcheg')
 		if imgui.CollapsingHeader(u8'Настройки')then
 			imgui.Text(u8'Основное окно')
-			imgui.SliderInt('X position##1', xmainslider, 130, gw - 135)
-			imgui.SliderInt('Y position##1', ymainslider, 120, gh - 120)
+			imgui.PushItemWidth(215)
+			imgui.InputInt('X##1', mainWindow.x, 0)
+			imgui.InputInt('Y##1', mainWindow.y, 0)
 			imgui.Text(u8'Вторичное окно')
-			imgui.SliderInt('X position##2', xsecondslider, 120, gw - 120)
-			imgui.SliderInt('Y position##2', ysecondslider, 30, gh - 30)
-			imgui.Checkbox(u8'Активация только командой', actkey)
+			imgui.InputInt('X##2', secondWindow.x, 0)
+			imgui.InputInt('Y##2', secondWindow.y, 0)
+			imgui.PopItemWidth()
+			imgui.Checkbox(u8'Активация только командой(/sanim)', actkey)
 			if inicfg.save(mainIni, "..\\config\\anims\\animation.ini") then
 				mainIni = {
 					location = {
-						xmain = xmainslider[0],
-						ymain = ymainslider[0],
-						xsecond = xsecondslider[0],
-						ysecond = ysecondslider[0]
+						xmain = mainWindow.x[0],
+						ymain = mainWindow.y[0],
+						xsecond = secondWindow.x[0],
+						ysecond = secondWindow.y[0]
 					},
 					main = {
 						activation = actkey[0]
@@ -279,12 +285,12 @@ local mainFrame = imgui.OnFrame(
 
 local SecondFrame
 SecondFrame = imgui.OnFrame(
-	function() return renderSecondWindow[0] end,
+	function() return secondWindow.active[0] end,
 	function(self)
 		SecondFrame.HideCursor = true
-		imgui.SetNextWindowPos(imgui.ImVec2(mainIni.location.xsecond, mainIni.location.ysecond), nil, imgui.ImVec2(0.5, 0.5))
+		imgui.SetNextWindowPos(imgui.ImVec2(secondWindow.x[0], secondWindow.y[0]), nil, imgui.ImVec2(0.5, 0.5))
 		imgui.SetNextWindowSize(imgui.ImVec2(200, 40), imgui.Cond.FirstUseEver)
-		imgui.Begin("##11", renderSecondWindow, imgui.WindowFlags.NoMove + imgui.WindowFlags.NoResize + imgui.WindowFlags.NoTitleBar)
+		imgui.Begin("##11", secondWindow.active, imgui.WindowFlags.NoMove + imgui.WindowFlags.NoResize + imgui.WindowFlags.NoTitleBar)
 		imgui.SetCursorPos(imgui.ImVec2(4,11))
 		imgui.PushFont(mainfont)
 		imgui.Text("Press   to stop the animation")
@@ -302,14 +308,11 @@ function main()
 		inicfg.save(mainIni, "..\\config\\anims\\animation.ini")
 	end
 	loadAnims()
-	local _, id = sampGetPlayerIdByCharHandle(PLAYER_PED)
-	autoupdate("https://raw.githubusercontent.com/TheSnoopcheg/anims/main/update.json", '['..string.upper(thisScript().name)..']: ', "vk.com/snoopcheg")
-	openchangelog("https://github.com/TheSnoopcheg/anims/blob/main/CHANGELOG.md")
-	sampRegisterChatCommand("sanim", function() renderMainWindow[0] = not renderMainWindow[0] end)
+	sampRegisterChatCommand("sanim", function() mainWindow.active[0] = not mainWindow.active[0] end)
 	while true do wait(0)
 		if not mainIni.main.activation then
-			if wasKeyPressed(key.VK_X) and not sampIsChatInputActive() and not isGamePaused() and not sampIsDialogActive() and isPlayerPlaying(PLAYER_HANDLE) then
-				renderMainWindow[0] = not renderMainWindow[0]
+			if wasKeyPressed(key.VK_X) and not sampIsChatInputActive() and not isGamePaused() and not sampIsDialogActive() and sampIsLocalPlayerSpawned() then
+				mainWindow.active[0] = not mainWindow.active[0]
 			end
 		end
 		if wasKeyPressed(key.VK_F) and not isCharInAnyCar(PLAYER_PED) and not sampIsChatInputActive() and animStatus then
@@ -317,112 +320,69 @@ function main()
 			animStatus = false
 		end
 		if animStatus and not antiflood then
-			renderSecondWindow[0] = not renderSecondWindow[0]
+			secondWindow.active[0] = not secondWindow.active[0]
 			antiflood = true
 		elseif not animStatus and antiflood then
-			renderSecondWindow[0] = not renderSecondWindow[0]
+			secondWindow.active[0] = not secondWindow.active[0]
 			antiflood = false
 		end
 	end
 end
 
-function autoupdate(json_url, prefix, url)
-  local dlstatus = require('moonloader').download_status
-  local json = getWorkingDirectory() .. '\\'..thisScript().name..'-version.json'
-  if doesFileExist(json) then os.remove(json) end
-  downloadUrlToFile(json_url, json,
-    function(id, status, p1, p2)
-      if status == dlstatus.STATUSEX_ENDDOWNLOAD then
-        if doesFileExist(json) then
-          local f = io.open(json, 'r')
-          if f then
-            local info = decodeJson(f:read('*a'))
-			if info.stats ~= nil then
-                stats = info.stats
+function onWindowMessage(msg, wparam, lparam)
+    if msg == 0x100 or msg == 0x101 then
+        if (wparam == key.VK_ESCAPE and mainWindow.active[0]) and not isPauseMenuActive() then
+            consumeWindowMessage(true, false)
+            if msg == 0x101 then
+                mainWindow.active[0] = false
             end
-            updatelink = info.updateurl
-            updateversion = info.latest
-			if info.changelog ~= nil then
-                changelogurl = info.changelog
-            end
-            f:close()
-            os.remove(json)
-            if updateversion ~= thisScript().version then
-              lua_thread.create(function(prefix)
-                local dlstatus = require('moonloader').download_status
-                local color = -1
-                sampAddChatMessage((prefix..'Обнаружено обновление. Пытаюсь обновиться c '..thisScript().version..' на '..updateversion), color)
-                wait(250)
-                downloadUrlToFile(updatelink, thisScript().path,
-                  function(id3, status1, p13, p23)
-                    if status1 == dlstatus.STATUS_DOWNLOADINGDATA then
-                      print(string.format('Загружено %d из %d.', p13, p23))
-                    elseif status1 == dlstatus.STATUS_ENDDOWNLOADDATA then
-                      print('Загрузка обновления завершена.')
-                      sampAddChatMessage((prefix..'Обновление завершено!'), color)
-                      goupdatestatus = true
-                      lua_thread.create(function() wait(500) thisScript():reload() end)
-                    end
-                    if status1 == dlstatus.STATUSEX_ENDDOWNLOAD then
-                      if goupdatestatus == nil then
-                        sampAddChatMessage((prefix..'Обновление прошло неудачно. Запускаю устаревшую версию..'), color)
-                        update = false
-                      end
-                    end
-                  end
-                )
-                end, prefix
-              )
-            else
-              update = false
-              print('v'..thisScript().version..': Обновление не требуется.')
-            end
-          end
-        else
-          print('v'..thisScript().version..': Не могу проверить обновление. Смиритесь или проверьте самостоятельно на '..url)
-          update = false
         end
-      end
     end
-  )
-  while update ~= false do wait(100) end
-end
-
-function openchangelog(url)
-    sampRegisterChatCommand(
-        "showupdatelist",
-        function()
-            lua_thread.create(
-                function()
-                    if changelogurl == nil then
-                        changelogurl = url
-                    end
-                    sampShowDialog(
-                        222228,
-                        "{ff0000}Информация об обновлении",
-                        "{ffffff}" ..
-                            thisScript().name ..
-                                " {ffe600}собирается открыть свой changelog для вас.\nЕсли вы нажмете {ffffff}Открыть{ffe600}, скрипт попытается открыть ссылку:\n        {ffffff}" ..
-                                    changelogurl ..
-                                        "\n{ffe600}Если ваша игра крашнется, вы можете открыть эту ссылку сами.",
-                        "Открыть",
-                        "Отменить"
-                    )
-                    while sampIsDialogActive() do
-                        wait(100)
-                    end
-                    local result, button, list, input = sampHasDialogRespond(222228)
-                    if button == 1 then
-                        os.execute('explorer "' .. changelogurl .. '"')
-                    end
-                end
-            )
-        end
-    )
 end
 
 function sampev.onClearPlayerAnimation(id)
 	if animStatus then
 		return false
 	end
+end
+
+function apply_custom_style()
+	local style = imgui.GetStyle()
+    local colors = style.Colors
+    local clr = imgui.Col
+    local ImVec4 = imgui.ImVec4
+
+	style.WindowBorderSize = 0.0
+	style.WindowRounding = 5.5
+    style.WindowTitleAlign = imgui.ImVec2(0.5, 0.5)
+    style.FrameRounding = 10.0
+    style.ScrollbarSize = 9.0
+    style.ScrollbarRounding = 10.0
+    style.GrabMinSize = 17.5
+    style.GrabRounding = 10.0
+    style.WindowPadding = imgui.ImVec2(3.5, 3.5)
+    style.FramePadding = imgui.ImVec2(3.5, 3.5)
+    style.ButtonTextAlign = imgui.ImVec2(0.5, 0.4)
+
+	colors[clr.Text] = ImVec4(1.00, 1.00, 1.00, 1.00)
+    colors[clr.TextDisabled] = ImVec4(0.50, 0.50, 0.50, 1.00)
+    colors[clr.WindowBg] = imgui.ImVec4(0.0, 0.0, 0.0, 0.6)
+    colors[clr.PopupBg] = ImVec4(0.08, 0.08, 0.08, 0.94)
+    colors[clr.Border] = imgui.ImVec4(0.0, 0.56, 0.60, 0.4)
+    colors[clr.BorderShadow] = ImVec4(0.00, 0.00, 0.00, 0.00)
+    colors[clr.FrameBg] = imgui.ImVec4(0.6, 0.1, 0.1, 1.0)
+    colors[clr.FrameBgHovered] = imgui.ImVec4(0.6, 0.1, 0.1, 0.5)
+    colors[clr.FrameBgActive] = imgui.ImVec4(0.6, 0.1, 0.1, 0.5)
+    colors[clr.TitleBg] = imgui.ImVec4(0.1, 0.0, 0.0, 1.0)
+    colors[clr.TitleBgActive] = imgui.ImVec4(0.6, 0.1, 0.1, 1.0)
+    colors[clr.TitleBgCollapsed] = ImVec4(0.05, 0.05, 0.05, 0.79)
+    colors[clr.CheckMark] = ImVec4(1.00, 1.00, 1.00, 1.00)
+	colors[clr.Button] = imgui.ImVec4(0.6, 0.1, 0.1, 1.0)
+	colors[clr.ButtonHovered] = imgui.ImVec4(0.8, 0.1, 0.1, 1.0)
+	colors[clr.ButtonActive] = imgui.ImVec4(0.8, 0.1, 0.1, 1.0)
+	colors[clr.Header] = imgui.ImVec4(0.6, 0.1, 0.1, 1.0)
+	colors[clr.HeaderHovered] = imgui.ImVec4(0.8, 0.1, 0.1, 1.0)
+	colors[clr.HeaderActive] = imgui.ImVec4(0.8, 0.1, 0.1, 1.0)
+	colors[clr.SliderGrab] = imgui.ImVec4(1.00, 1.00, 1.00, 1.00)
+	colors[clr.SliderGrabActive] = imgui.ImVec4(1.00, 1.00, 1.00, 0.50)
 end
